@@ -1,0 +1,12 @@
+name: secret-scan-repo-supervisor
+on: [push, pull_request]
+jobs:
+  repo-supervisor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install repo-supervisor
+        run: |
+          npm install -g repo-supervisor
+      - name: Scan
+        run: repo-supervisor --no-exit-code --path .
